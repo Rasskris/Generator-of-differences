@@ -27,8 +27,7 @@ jobs:
         CI: true 
       run: npm install
     - name: Run linter
-      run: |
-        make lint
+      run: npx eslint .
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v2.6.0
       env:

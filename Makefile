@@ -8,7 +8,7 @@ start:
 	npx babel-node src/bin/gendiff.js
 
 lint:
-    npx eslint .
+	npx eslint .
 
 test:
 	npm test

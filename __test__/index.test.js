@@ -2,10 +2,10 @@ import path from 'path';
 import genDiff from '../src';
 
 test('genDiff', () => {
-  const getPath = (filename) => path.join(__dirname, `__fixtures__${filename}`);
-  const before = getPath('before.json');
-  const after = getPath('after.json');
-  const result = `{
+  const getPath = (filename) => path.join(__dirname, `__fixtures__/${filename}`);
+  const before = getPath('before.yml');
+  const after = getPath('after.yml');
+  const result = `{ 
     host: hexlet.io
   + timeout: 20
   - timeout: 50

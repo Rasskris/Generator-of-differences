@@ -4,7 +4,11 @@
 ------------
 # Generator of differences
 ## Utility for finding differences in configuration files
-### The utility compares two configuration files and displays the result of the comparison in the console. Supported formats: json, yaml, ini. Supports output in several formats: stylish, plain and JSON.
+The utility compares two configuration files and displays the result of the comparison in the console.
+
+Supported formats: `json`, `yaml`, `ini`. 
+
+Supports output in several formats: `stylish`, `plain` and `json`.
 
 ### Installation:
 ```sh
@@ -12,7 +16,7 @@ $ npm install gendiff-utility
 ```
 ### Use:
 ```sh
-$ gendiff -h  //show options
+$ gendiff -h
 Usage: gendiff [options] <filepath1> <filepath2>
 
 Compares two configuration files and shows a difference.

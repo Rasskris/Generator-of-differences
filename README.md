@@ -29,7 +29,7 @@ Options:
 
 ### Output `stylish` format (stylish default format):
 ```sh
-$ gendiff --format stylish <file1> <file2> || $ gendiff <file1> <file2>
+$ gendiff --format stylish <file1> <file2>
 ```
 [![asciicast](https://asciinema.org/a/341883.svg)](https://asciinema.org/a/341883)
 ### Output `plain` format:

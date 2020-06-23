@@ -8,7 +8,7 @@ The utility compares two configuration files and displays the result of the comp
 
 Supported formats: `json`, `yaml`, `ini`. 
 
-Supports output in several formats: `stylish`, `plain` and `json`.
+Supports output in several formats: `stylish`, `plain`, `json`.
 
 ### Installation:
 ```sh

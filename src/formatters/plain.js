@@ -12,7 +12,7 @@ const getOutputValue = (value) => {
   return value;
 };
 
-const getPlain = (diff, concatedKey = '') => diff
+const getPlain = (diff, path = '') => diff
   .filter(({ type }) => type !== 'unchanged')
   .map(({
     key,
@@ -22,16 +22,16 @@ const getPlain = (diff, concatedKey = '') => diff
     valueAfter,
     children,
   }) => {
-    const newKey = concatedKey === '' ? key : `${concatedKey}.${key}`;
+    const newPath = path === '' ? key : `${path}.${key}`;
     switch (type) {
       case 'added':
-        return `Property '${newKey}' was added with value: ${getOutputValue(value)}`;
+        return `Property '${newPath}' was added with value: ${getOutputValue(value)}`;
       case 'removed':
-        return `Property '${newKey}' was removed`;
+        return `Property '${newPath}' was removed`;
       case 'changed':
-        return `Property '${newKey}' was changed from ${getOutputValue(valueBefore)} to ${getOutputValue(valueAfter)}`;
+        return `Property '${newPath}' was changed from ${getOutputValue(valueBefore)} to ${getOutputValue(valueAfter)}`;
       case 'nested':
-        return getPlain(children, newKey);
+        return getPlain(children, newPath);
       default:
         throw new Error(`Unexpected type: '${type}'.`);
     }

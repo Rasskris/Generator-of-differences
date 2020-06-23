@@ -7,6 +7,7 @@ const getSpaces = (depth) => ' '.repeat(depth + indentStep);
 
 const stringify = (key, value, depth) => {
   const firstIndent = getSpaces(depth);
+
   if (!isObject(value)) {
     return [firstIndent, `${key}: ${value}`].join('');
   }
@@ -16,7 +17,7 @@ const stringify = (key, value, depth) => {
     .entries(value)
     .map(([curKey, curValue]) => {
       if (isObject(curValue)) {
-        return stringify(curKey, curValue, depth + 9);
+        return stringify(curKey, curValue, depth + 8);
       }
       const curFirstIndent = getSpaces(depth + 6);
       return [curFirstIndent, `${curKey}: ${curValue}`].join('');

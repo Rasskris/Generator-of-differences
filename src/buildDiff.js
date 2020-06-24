@@ -20,8 +20,8 @@ const buildDiff = (data1, data2) => {
     return {
       key,
       type: 'changed',
-      valueBefore: data1[key],
-      valueAfter: data2[key],
+      beforeValue: data1[key],
+      afterValue: data2[key],
     };
   });
 };

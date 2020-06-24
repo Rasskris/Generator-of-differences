@@ -18,8 +18,8 @@ const getPlain = (diff, path = '') => diff
     key,
     type,
     value,
-    valueBefore,
-    valueAfter,
+    beforeValue,
+    afterValue,
     children,
   }) => {
     const newPath = path === '' ? key : `${path}.${key}`;
@@ -29,7 +29,7 @@ const getPlain = (diff, path = '') => diff
       case 'removed':
         return `Property '${newPath}' was removed`;
       case 'changed':
-        return `Property '${newPath}' was changed from ${getOutputValue(valueBefore)} to ${getOutputValue(valueAfter)}`;
+        return `Property '${newPath}' was changed from ${getOutputValue(beforeValue)} to ${getOutputValue(afterValue)}`;
       case 'nested':
         return getPlain(children, newPath);
       default:

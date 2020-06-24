@@ -33,8 +33,8 @@ const getStylish = (diff) => {
       key,
       type,
       value,
-      valueBefore,
-      valueAfter,
+      beforeValue,
+      afterValue,
       children,
     }) => {
       switch (type) {
@@ -45,7 +45,7 @@ const getStylish = (diff) => {
         case 'unchanged':
           return stringify(`  ${key}`, value, depth);
         case 'changed':
-          return `${stringify(`- ${key}`, valueBefore, depth)}\n${stringify(`+ ${key}`, valueAfter, depth)}`;
+          return `${stringify(`- ${key}`, beforeValue, depth)}\n${stringify(`+ ${key}`, afterValue, depth)}`;
         case 'nested':
           return `${getSpaces(depth)}  ${key}: {\n${stylish(children, depth + 4)}\n${getSpaces(depth)}  }`;
         default:

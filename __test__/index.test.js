@@ -2,17 +2,23 @@ import fs from 'fs';
 import path from 'path';
 import genDiff from '../src/index.js';
 
-const filetypes = ['json', 'yml', 'ini'];
-const fileFormats = ['stylish', 'plain', 'json'];
+const types = ['json', 'yml', 'ini'];
 
-const args = fileFormats.flatMap((format) => (
-  filetypes.map((type) => [type, format])
-));
+const getPath = (filename) => path.resolve('__test__', '__fixtures__', filename);
 
-test.each(args)('%s type files difference with %s output', (type, format) => {
-  const getPath = (filename) => path.resolve('__test__', '__fixtures__', filename);
+let stylish;
+let plain;
+let json;
+beforeAll(() => {
+  stylish = fs.readFileSync(getPath('stylish'), 'utf-8');
+  plain = fs.readFileSync(getPath('plain'), 'utf-8');
+  json = fs.readFileSync(getPath('json'), 'utf-8');
+});
+
+test.each(types)('compare two %s type files difference', (type) => {
   const before = getPath(`before.${type}`);
   const after = getPath(`after.${type}`);
-  const result = fs.readFileSync(getPath(format), 'utf-8');
-  expect(genDiff(before, after, format)).toEqual(result);
+  expect(genDiff(before, after)).toEqual(stylish);
+  expect(genDiff(before, after, 'plain')).toEqual(plain);
+  expect(genDiff(before, after, 'json')).toEqual(json);
 });

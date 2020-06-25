@@ -1,6 +1,4 @@
-import pkg from 'lodash';
-
-const { isObject } = pkg;
+import _ from 'lodash';
 
 const indentStep = 2;
 const getSpaces = (depth) => ' '.repeat(depth + indentStep);
@@ -8,7 +6,7 @@ const getSpaces = (depth) => ' '.repeat(depth + indentStep);
 const stringify = (key, value, depth) => {
   const firstIndent = getSpaces(depth);
 
-  if (!isObject(value)) {
+  if (!_.isObject(value)) {
     return [firstIndent, `${key}: ${value}`].join('');
   }
 
@@ -16,7 +14,7 @@ const stringify = (key, value, depth) => {
   const nestedValue = Object
     .entries(value)
     .map(([curKey, curValue]) => {
-      if (isObject(curValue)) {
+      if (_.isObject(curValue)) {
         return stringify(curKey, curValue, depth + 8);
       }
       const curFirstIndent = getSpaces(depth + 6);

@@ -1,12 +1,10 @@
-import pkg from 'lodash';
-
-const { isObject } = pkg;
+import _ from 'lodash';
 
 const getOutputValue = (value) => {
   if (typeof value === 'string') {
     return `'${value}'`;
   }
-  if (isObject(value)) {
+  if (_.isObject(value)) {
     return '[complex value]';
   }
   return value;

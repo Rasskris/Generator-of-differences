@@ -4,7 +4,7 @@ import genDiff from '../src/index.js';
 
 const types = ['json', 'yml', 'ini'];
 
-const getPath = (filename) => path.resolve('__test__', '__fixtures__', filename);
+const getPath = (filename) => path.resolve('__tests__', '__fixtures__', filename);
 
 let stylish;
 let plain;

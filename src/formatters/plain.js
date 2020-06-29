@@ -10,29 +10,31 @@ const getOutputValue = (value) => {
   return value;
 };
 
-const getPlain = (diff, path = '') => diff
-  .filter(({ type }) => type !== 'unchanged')
-  .map(({
-    key,
-    type,
-    value,
-    beforeValue,
-    afterValue,
-    children,
-  }) => {
-    const newPath = path === '' ? key : `${path}.${key}`;
-    switch (type) {
-      case 'added':
-        return `Property '${newPath}' was added with value: ${getOutputValue(value)}`;
-      case 'removed':
-        return `Property '${newPath}' was removed`;
-      case 'changed':
-        return `Property '${newPath}' was changed from ${getOutputValue(beforeValue)} to ${getOutputValue(afterValue)}`;
-      case 'nested':
-        return getPlain(children, newPath);
-      default:
-        throw new Error(`Unexpected type: '${type}'.`);
-    }
-  }).join('\n');
-
+const getPlain = (diff) => {
+  const iter = (innerDiff, path) => innerDiff
+    .filter(({ type }) => type !== 'unchanged')
+    .map(({
+      key,
+      type,
+      value,
+      beforeValue,
+      afterValue,
+      children,
+    }) => {
+      const newPath = path.length <= 1 ? key : [path, key].join('.');
+      switch (type) {
+        case 'added':
+          return `Property '${newPath}' was added with value: ${getOutputValue(value)}`;
+        case 'removed':
+          return `Property '${newPath}' was removed`;
+        case 'changed':
+          return `Property '${newPath}' was changed from ${getOutputValue(beforeValue)} to ${getOutputValue(afterValue)}`;
+        case 'nested':
+          return iter(children, newPath);
+        default:
+          throw new Error(`Unexpected type: '${type}'.`);
+      }
+    }).join('\n');
+  return iter(diff, []);
+};
 export default getPlain;
